@@ -11,9 +11,15 @@ export function App() {
 
   const [open, setOpen] = useState(false);
   const [offers, setOffers] = useState([]);
-  const [offer, setOffer] = useState("");
-
-  console.log(offers);
+  const [offer, setOffer] = useState({
+    company: "",
+    job: "",
+    salary: "",
+    status: "Saved",
+    format: "Remote",
+    note: "",
+    link: "",
+  });
 
   useEffect(() => {
     localStorage.setItem("offers", JSON.stringify(offers));
