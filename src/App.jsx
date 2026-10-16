@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Welcome } from "./components/Welcome";
 import { OfferModal } from "./components/OfferModal";
+import { KanbanBoard } from "./features/jobs/components/KanbanBoard";
 
 export function App() {
   const [welcome, setWelcome] = useState(() => {
@@ -10,7 +11,15 @@ export function App() {
   });
 
   const [open, setOpen] = useState(false);
-  const [offers, setOffers] = useState([]);
+  const [offers, setOffers] = useState(() => {
+    const saved = localStorage.getItem("offers");
+
+    if (saved) {
+      return JSON.parse(saved);
+    }
+
+    return [];
+  });
   const [offer, setOffer] = useState({
     company: "",
     job: "",
@@ -40,7 +49,9 @@ export function App() {
               setOffers={setOffers}
               setOffer={setOffer}
             />
-          ) : null}
+          ) : (
+            <KanbanBoard title="Saved" offers={offers} />
+          )}
         </div>
       )}
     </div>
