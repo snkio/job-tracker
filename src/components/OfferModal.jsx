@@ -1,3 +1,4 @@
+import { jobOffer } from "../constants/jobOffer";
 import { inputs } from "../constants/offerFormFields";
 
 export function OfferModal({
@@ -19,15 +20,7 @@ export function OfferModal({
     if (!offer) return;
 
     setOffers((prev) => [...prev, offer]);
-    setOffer({
-      company: "",
-      job: "",
-      salary: "",
-      status: "Saved",
-      format: "Remote",
-      note: "",
-      link: "",
-    });
+    setOffer(() => ({ ...jobOffer, id: crypto.randomUUID() }));
     setOpen(false);
   };
 

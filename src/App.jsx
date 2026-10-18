@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Welcome } from "./components/Welcome";
 import { OfferModal } from "./components/OfferModal";
 import { KanbanBoard } from "./features/jobs/components/KanbanBoard";
+import { jobOffer } from "./constants/jobOffer";
 
 export function App() {
   const [welcome, setWelcome] = useState(() => {
@@ -20,15 +21,11 @@ export function App() {
 
     return [];
   });
-  const [offer, setOffer] = useState({
-    company: "",
-    job: "",
-    salary: "",
-    status: "Saved",
-    format: "Remote",
-    note: "",
-    link: "",
-  });
+  const [offer, setOffer] = useState(() => ({
+    ...jobOffer,
+    id: crypto.randomUUID(),
+  }));
+  console.log(offer);
 
   useEffect(() => {
     localStorage.setItem("offers", JSON.stringify(offers));
@@ -50,7 +47,33 @@ export function App() {
               setOffer={setOffer}
             />
           ) : (
-            <KanbanBoard title="Saved" offers={offers} />
+            <div>
+              <KanbanBoard
+                title="Saved"
+                offers={offers}
+                setOffers={setOffers}
+              />
+              <KanbanBoard
+                title="Applied"
+                offers={offers}
+                setOffers={setOffers}
+              />
+              <KanbanBoard
+                title="Interview"
+                offers={offers}
+                setOffers={setOffers}
+              />
+              <KanbanBoard
+                title="Offer"
+                offers={offers}
+                setOffers={setOffers}
+              />
+              <KanbanBoard
+                title="Rejected"
+                offers={offers}
+                setOffers={setOffers}
+              />
+            </div>
           )}
         </div>
       )}
