@@ -19,7 +19,16 @@ export function OfferModal({
 
     if (!offer) return;
 
-    setOffers((prev) => [...prev, offer]);
+    setOffers((prev) => {
+      const exists = prev.some((item) => item.id === offer.id);
+
+      if (exists) {
+        return prev.map((item) => (item.id === offer.id ? offer : item));
+      }
+
+      return [...prev, offer];
+    });
+
     setOffer(() => ({ ...jobOffer, id: crypto.randomUUID() }));
     setOpen(false);
   };

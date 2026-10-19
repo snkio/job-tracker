@@ -1,6 +1,15 @@
-export function OfferCard({ item, setOffers }) {
+export function OfferCard({ item, setOffers, setOffer, offers, setOpen }) {
   const deleteOffer = (id) => {
     setOffers((prev) => prev.filter((offer) => offer.id !== id));
+  };
+
+  const editOffer = (id) => {
+    const foundOffer = offers.find((offer) => offer.id === id);
+
+    if (foundOffer) {
+      setOffer({ ...foundOffer });
+      setOpen(true);
+    }
   };
 
   return (
@@ -13,6 +22,7 @@ export function OfferCard({ item, setOffers }) {
         {item.link}
       </a>
       <button onClick={() => deleteOffer(item.id)}>Delete</button>
+      <button onClick={() => editOffer(item.id)}>Edit</button>
     </>
   );
 }

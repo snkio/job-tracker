@@ -4,6 +4,8 @@ import { OfferModal } from "./components/OfferModal";
 import { KanbanBoard } from "./features/jobs/components/KanbanBoard";
 import { jobOffer } from "./constants/jobOffer";
 
+const boardTitles = ["Saved", "Applied", "Interview", "Offer", "Rejected"];
+
 export function App() {
   const [welcome, setWelcome] = useState(() => {
     const saved = localStorage.getItem("welcome");
@@ -15,17 +17,12 @@ export function App() {
   const [offers, setOffers] = useState(() => {
     const saved = localStorage.getItem("offers");
 
-    if (saved) {
-      return JSON.parse(saved);
-    }
-
-    return [];
+    return saved ? JSON.parse(saved) : [];
   });
   const [offer, setOffer] = useState(() => ({
     ...jobOffer,
     id: crypto.randomUUID(),
   }));
-  console.log(offer);
 
   useEffect(() => {
     localStorage.setItem("offers", JSON.stringify(offers));
@@ -48,31 +45,16 @@ export function App() {
             />
           ) : (
             <div>
-              <KanbanBoard
-                title="Saved"
-                offers={offers}
-                setOffers={setOffers}
-              />
-              <KanbanBoard
-                title="Applied"
-                offers={offers}
-                setOffers={setOffers}
-              />
-              <KanbanBoard
-                title="Interview"
-                offers={offers}
-                setOffers={setOffers}
-              />
-              <KanbanBoard
-                title="Offer"
-                offers={offers}
-                setOffers={setOffers}
-              />
-              <KanbanBoard
-                title="Rejected"
-                offers={offers}
-                setOffers={setOffers}
-              />
+              {boardTitles.map((title) => (
+                <KanbanBoard
+                  key={title}
+                  title={title}
+                  offers={offers}
+                  setOffer={setOffer}
+                  setOffers={setOffers}
+                  setOpen={setOpen}
+                />
+              ))}
             </div>
           )}
         </div>
