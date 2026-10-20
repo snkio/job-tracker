@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { Welcome } from "./components/Welcome";
 import { OfferModal } from "./components/OfferModal";
+import { KanbanBoard } from "./features/jobs/components/KanbanBoard";
+import { jobOffer } from "./constants/jobOffer";
+
+const boardTitles = ["Saved", "Applied", "Interview", "Offer", "Rejected"];
 
 export function App() {
   const [welcome, setWelcome] = useState(() => {
@@ -10,10 +14,15 @@ export function App() {
   });
 
   const [open, setOpen] = useState(false);
-  const [offers, setOffers] = useState([]);
-  const [offer, setOffer] = useState("");
+  const [offers, setOffers] = useState(() => {
+    const saved = localStorage.getItem("offers");
 
-  console.log(offers);
+    return saved ? JSON.parse(saved) : [];
+  });
+  const [offer, setOffer] = useState(() => ({
+    ...jobOffer,
+    id: crypto.randomUUID(),
+  }));
 
   useEffect(() => {
     localStorage.setItem("offers", JSON.stringify(offers));
@@ -34,7 +43,20 @@ export function App() {
               setOffers={setOffers}
               setOffer={setOffer}
             />
-          ) : null}
+          ) : (
+            <div>
+              {boardTitles.map((title) => (
+                <KanbanBoard
+                  key={title}
+                  title={title}
+                  offers={offers}
+                  setOffer={setOffer}
+                  setOffers={setOffers}
+                  setOpen={setOpen}
+                />
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>
