@@ -30,10 +30,9 @@ export function OfferModal({ setOpen, offer, setOffer, setOffers }) {
   return (
     <div className="fixed inset-0 flex min-h-screen flex-col justify-center items-center bg-zinc-950/50 backdrop-blur-sm">
       <div className="absolute bg-zinc-200 max-w-md w-full p-2 rounded-2xl">
-        <div className="flex justify-between">
-          <h2>Editor</h2>
-          <p onClick={() => setOpen(false)}>Close</p>
-        </div>
+        <h2 className="text-[20px] md:text-2xl font-poppins font-bold">
+          Editor
+        </h2>
         <form onSubmit={handleSave}>
           <>
             {inputs.map((item, i) => {
@@ -41,8 +40,8 @@ export function OfferModal({ setOpen, offer, setOffer, setOffers }) {
               return (
                 <div key={i}>
                   {item.type !== "select" ? (
-                    <label>
-                      <span>{item.label}</span>
+                    <label className="flex flex-col">
+                      <span className="font-bold">{item.label}</span>
                       <input
                         type={item.type}
                         name={item.name}
@@ -52,8 +51,8 @@ export function OfferModal({ setOpen, offer, setOffer, setOffers }) {
                       />
                     </label>
                   ) : (
-                    <label>
-                      <span>{item.label}</span>
+                    <label className="flex flex-col">
+                      <span className="font-bold">{item.label}</span>
                       <select
                         name={item.name}
                         value={offer[item.name]}
@@ -70,7 +69,10 @@ export function OfferModal({ setOpen, offer, setOffer, setOffers }) {
                 </div>
               );
             })}
-            <button>Save</button>
+            <div className="flex gap-4">
+              <button onClick={() => setOpen(false)}>Cancel</button>
+              <button>Save</button>
+            </div>
           </>
         </form>
       </div>
