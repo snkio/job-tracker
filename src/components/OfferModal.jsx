@@ -48,7 +48,8 @@ export function OfferModal({ setOpen, offer, setOffer, setOffers }) {
                         value={offer[item.name]}
                         required={item.required}
                         onChange={handleChange}
-                      />
+                        className="bg-zinc-300/70 px-2 py-1 outline-none rounded-lg appearance-none"
+                      ></input>
                     </label>
                   ) : (
                     <label className="flex flex-col">
@@ -57,6 +58,7 @@ export function OfferModal({ setOpen, offer, setOffer, setOffers }) {
                         name={item.name}
                         value={offer[item.name]}
                         onChange={handleChange}
+                        className="bg-zinc-300/70 px-2 py-1 outline-none rounded-lg"
                       >
                         {options.map((option, id) => (
                           <option key={id} name={option[0]} value={option}>
