@@ -1,5 +1,6 @@
 import { jobOffer } from "../constants/jobOffer";
 import { inputs } from "../constants/offerFormFields";
+import { X } from "lucide-react";
 
 export function OfferModal({ setOpen, offer, setOffer, setOffers }) {
   const handleChange = (e) => {
@@ -19,7 +20,6 @@ export function OfferModal({ setOpen, offer, setOffer, setOffers }) {
       if (exists) {
         return prev.map((item) => (item.id === offer.id ? offer : item));
       }
-
       return [...prev, offer];
     });
 
@@ -29,39 +29,51 @@ export function OfferModal({ setOpen, offer, setOffer, setOffers }) {
 
   return (
     <div className="fixed inset-0 flex min-h-screen flex-col justify-center items-center bg-zinc-950/50 backdrop-blur-sm">
-      <div className="absolute bg-zinc-200 max-w-md w-full p-2 rounded-2xl">
-        <h2 className="text-[20px] md:text-2xl font-poppins font-bold">
-          Editor
-        </h2>
-        <form onSubmit={handleSave}>
-          <>
+      <div className="absolute bg-zinc-200 max-w-md w-full p-3 rounded-2xl">
+        <div className="flex justify-between mb-4">
+          <h2 className="text-[20px] md:text-2xl font-poppins font-bold">
+            Editing
+          </h2>
+          <button
+            onClick={() => setOpen(false)}
+            className="transition-transform duration-300 ease-out md:hover:rotate-90"
+          >
+            <X />
+          </button>
+        </div>
+        <form onSubmit={handleSave} className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
             {inputs.map((item, i) => {
               const { options } = item;
               return (
                 <div key={i}>
                   {item.type !== "select" ? (
-                    <label className="flex flex-col">
-                      <span className="font-bold">{item.label}</span>
+                    <label className="flex flex-col gap-1">
+                      <span className="text-sm font-semibold text-zinc-700">
+                        {item.label}
+                      </span>
                       <input
                         type={item.type}
                         name={item.name}
                         value={offer[item.name]}
                         required={item.required}
                         onChange={handleChange}
-                        className="bg-zinc-300/70 px-2 py-1 outline-none rounded-lg appearance-none"
-                      ></input>
+                        className="w-full bg-zinc-100 border border-zinc-300 px-3 py-2 outline-none focus:border-zinc-500 rounded-lg transition-all duration-300"
+                      />
                     </label>
                   ) : (
-                    <label className="flex flex-col">
-                      <span className="font-bold">{item.label}</span>
+                    <label className="flex flex-col gap-1">
+                      <span className="text-sm font-semibold text-zinc-700">
+                        {item.label}
+                      </span>
                       <select
                         name={item.name}
                         value={offer[item.name]}
                         onChange={handleChange}
-                        className="bg-zinc-300/70 px-2 py-1 outline-none rounded-lg"
+                        className="w-full bg-zinc-100 border border-zinc-300 px-3 py-2 outline-none focus:border-zinc-500 rounded-lg transition-all duration-300 cursor-pointer"
                       >
                         {options.map((option, id) => (
-                          <option key={id} name={option[0]} value={option}>
+                          <option key={id} value={option}>
                             {option}
                           </option>
                         ))}
@@ -71,11 +83,13 @@ export function OfferModal({ setOpen, offer, setOffer, setOffers }) {
                 </div>
               );
             })}
-            <div className="flex gap-4">
-              <button onClick={() => setOpen(false)}>Cancel</button>
-              <button>Save</button>
-            </div>
-          </>
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-zinc-900 md:hover:bg-zinc-800 text-white font-bold p-2 rounded-lg transition-colors duration-300 mt-2"
+          >
+            Save Changes
+          </button>
         </form>
       </div>
     </div>
