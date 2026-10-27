@@ -1,11 +1,27 @@
 import { OfferCard } from "./OfferCard";
+import { jobOffer } from "../../../constants/jobOffer";
+import { Plus } from "lucide-react";
 
 export function KanbanBoard({ title, offers, setOffers, setOffer, setOpen }) {
   const filteredOffers = offers.filter((item) => item.status === title);
 
   return (
     <div className="flex flex-col">
-      <h3 className="text-[18px]">{title}</h3>
+      <div className="flex gap-2">
+        <h3 className="text-[18px] font-poppins font-semibold">{title}</h3>
+        <button
+          onClick={() => {
+            setOffer(() => ({
+              ...jobOffer,
+              status: title,
+              id: crypto.randomUUID(),
+            }));
+            setOpen(true);
+          }}
+        >
+          <Plus />
+        </button>
+      </div>
       <div>
         {filteredOffers.map((item) => (
           <OfferCard

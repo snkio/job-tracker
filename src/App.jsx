@@ -3,7 +3,6 @@ import { Welcome } from "./components/Welcome";
 import { OfferModal } from "./components/OfferModal";
 import { KanbanBoard } from "./features/jobs/components/KanbanBoard";
 import { jobOffer } from "./constants/jobOffer";
-import { Plus } from "lucide-react";
 
 const boardTitles = ["Saved", "Applied", "Interview", "Offer", "Rejected"];
 
@@ -35,12 +34,6 @@ export function App() {
         <Welcome setWelcome={setWelcome} setOpen={setOpen} />
       ) : (
         <div>
-          <button onClick={() => setOpen(true)}>
-            <div className="flex items-center">
-              <Plus size={24} />
-              <p>Create</p>
-            </div>
-          </button>
           {open ? (
             <OfferModal
               setOpen={setOpen}

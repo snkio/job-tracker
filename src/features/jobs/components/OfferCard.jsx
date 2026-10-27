@@ -17,8 +17,6 @@ export function OfferCard({ item, setOffers, setOffer, offers, setOpen }) {
     }
   };
 
-  console.log(more);
-
   return (
     <>
       <div className="flex">
@@ -41,8 +39,6 @@ export function OfferCard({ item, setOffers, setOffer, offers, setOpen }) {
       <a href={item.link} target="_blank">
         {item.link}
       </a>
-      {/* <button onClick={() => deleteOffer(item.id)}>Delete</button>
-      <button onClick={() => editOffer(item.id)}>Edit</button> */}
     </>
   );
 }
