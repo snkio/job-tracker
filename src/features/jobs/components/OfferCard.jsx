@@ -20,7 +20,9 @@ export function OfferCard({ item, setOffers, setOffer, offers, setOpen }) {
   return (
     <>
       <div className="flex">
-        <p>{item.company}</p>
+        <a href={item.link} target="_blank" rel="noopener">
+          {item.company}
+        </a>
         <div>
           <button onClick={() => setMore((prev) => !prev)}>
             <Ellipsis />
@@ -36,9 +38,6 @@ export function OfferCard({ item, setOffers, setOffer, offers, setOpen }) {
       <p>{item.job}</p>
       <p>{item.salary}</p>
       <p>{item.format}</p>
-      <a href={item.link} target="_blank">
-        {item.link}
-      </a>
     </>
   );
 }
