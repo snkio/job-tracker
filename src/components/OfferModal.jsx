@@ -36,7 +36,7 @@ export function OfferModal({ setOpen, offer, setOffer, setOffers }) {
           </h2>
           <button
             onClick={() => setOpen(false)}
-            className="transition-transform duration-300 ease-out md:hover:rotate-90"
+            className="cursor-pointer transition-transform duration-300 ease-out md:hover:rotate-90"
           >
             <X />
           </button>
@@ -86,7 +86,7 @@ export function OfferModal({ setOpen, offer, setOffer, setOffers }) {
           </div>
           <button
             type="submit"
-            className="w-full bg-zinc-900 md:hover:bg-zinc-800 text-white font-bold p-2 rounded-lg transition-colors duration-300 mt-2"
+            className="cursor-pointer w-full bg-zinc-900 md:hover:bg-zinc-800 text-white font-bold p-2 rounded-lg transition-colors duration-300 mt-2"
           >
             Save Changes
           </button>
