@@ -16,7 +16,7 @@ export function KanbanBoard({ title, offers, setOffers, setOffer, setOpen }) {
   };
 
   return (
-    <div className="bg-zinc-200 p-2 min-w-45 flex flex-col gap-2">
+    <div className="bg-zinc-200 p-2 w-full md:w-57.5 flex flex-col gap-2 rounded-md">
       <div className="relative flex justify-between items-center">
         <div className="flex gap-2 items-center">
           <h3 className="text-[18px] font-poppins font-semibold">{title}</h3>

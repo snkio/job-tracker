@@ -29,7 +29,10 @@ export function App() {
   }, [offers]);
 
   return (
-    <div className=" relative min-h-screen">
+    <div className="max-w-7xl mx-auto relative min-h-screen">
+      <h1 className="font-poppins text-2xl font-semibold md:text-4xl my-4">
+        Dashboard
+      </h1>
       {welcome ? (
         <Welcome setWelcome={setWelcome} setOpen={setOpen} />
       ) : (
@@ -43,7 +46,7 @@ export function App() {
               setOffer={setOffer}
             />
           ) : (
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap justify-between gap-4">
               {boardTitles.map((title) => (
                 <KanbanBoard
                   key={title}
