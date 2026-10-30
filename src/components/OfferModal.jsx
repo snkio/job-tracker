@@ -31,12 +31,12 @@ export function OfferModal({ setOpen, offer, setOffer, setOffers }) {
     <div className="fixed inset-0 flex min-h-screen flex-col justify-center items-center bg-zinc-950/50 backdrop-blur-sm">
       <div className="absolute bg-zinc-200 max-w-md w-full p-3 rounded-2xl">
         <div className="flex justify-between mb-4">
-          <h2 className="text-[20px] md:text-2xl font-poppins font-bold">
+          <h2 className="text-[20px] md:text-2xl font-poppins font-semibold">
             Editing
           </h2>
           <button
             onClick={() => setOpen(false)}
-            className="transition-transform duration-300 ease-out md:hover:rotate-90"
+            className="cursor-pointer transition-transform duration-300 ease-out md:hover:rotate-90"
           >
             <X />
           </button>
@@ -86,7 +86,7 @@ export function OfferModal({ setOpen, offer, setOffer, setOffers }) {
           </div>
           <button
             type="submit"
-            className="w-full bg-zinc-900 md:hover:bg-zinc-800 text-white font-bold p-2 rounded-lg transition-colors duration-300 mt-2"
+            className="cursor-pointer w-full bg-zinc-900 md:hover:bg-zinc-800 text-white font-bold p-2 rounded-lg transition-colors duration-300 mt-2"
           >
             Save Changes
           </button>

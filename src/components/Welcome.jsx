@@ -10,10 +10,10 @@ export function Welcome({ setWelcome, setOpen }) {
     <div className="relative z-50 min-h-screen flex justify-center items-center bg-zinc-950 text-white">
       <div className="flex flex-col gap-4 bg-zinc-900 border border-zinc-800 p-4 rounded-md">
         <div>
-          <h1 className="font-poppins text-2xl font-bold md:text-4xl">
+          <h1 className="font-poppins text-2xl font-semibold md:text-4xl">
             Welcome to Job Track
           </h1>
-          <p className="text-xs text-slate-400 max-w-70 md:max-w-full">
+          <p className="text-sm text-slate-400 max-w-70 md:max-w-full">
             You can create new offer now, or create it later in the Dashboard
           </p>
         </div>
