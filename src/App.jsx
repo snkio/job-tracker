@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Welcome } from "./components/Welcome";
-import { OfferModal } from "./components/OfferModal";
+import { OfferModal } from "./features/jobs/components/OfferEdit";
 import { KanbanBoard } from "./features/jobs/components/KanbanBoard";
 import { jobOffer } from "./constants/jobOffer";
 
@@ -29,10 +29,7 @@ export function App() {
   }, [offers]);
 
   return (
-    <div className="max-w-7xl mx-auto relative min-h-screen">
-      <h1 className="font-poppins text-2xl font-semibold md:text-4xl my-4">
-        Dashboard
-      </h1>
+    <div className="relative min-h-screen">
       {welcome ? (
         <Welcome setWelcome={setWelcome} setOpen={setOpen} />
       ) : (
@@ -46,17 +43,22 @@ export function App() {
               setOffer={setOffer}
             />
           ) : (
-            <div className="flex flex-wrap justify-between gap-4">
-              {boardTitles.map((title) => (
-                <KanbanBoard
-                  key={title}
-                  title={title}
-                  offers={offers}
-                  setOffer={setOffer}
-                  setOffers={setOffers}
-                  setOpen={setOpen}
-                />
-              ))}
+            <div className="max-w-7xl px-2 mx-auto">
+              <h1 className="font-poppins text-2xl font-semibold md:text-4xl my-4">
+                Dashboard
+              </h1>
+              <div className="flex flex-wrap justify-between gap-4">
+                {boardTitles.map((title) => (
+                  <KanbanBoard
+                    key={title}
+                    title={title}
+                    offers={offers}
+                    setOffer={setOffer}
+                    setOffers={setOffers}
+                    setOpen={setOpen}
+                  />
+                ))}
+              </div>
             </div>
           )}
         </div>

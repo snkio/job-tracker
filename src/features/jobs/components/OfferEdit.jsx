@@ -1,5 +1,5 @@
-import { jobOffer } from "../constants/jobOffer";
-import { inputs } from "../constants/offerFormFields";
+import { jobOffer } from "../../../constants/jobOffer";
+import { inputs } from "../../../constants/offerFormFields";
 import { X } from "lucide-react";
 
 export function OfferModal({ setOpen, offer, setOffer, setOffers }) {
@@ -28,17 +28,18 @@ export function OfferModal({ setOpen, offer, setOffer, setOffers }) {
   };
 
   return (
-    <div className="fixed inset-0 flex min-h-screen flex-col justify-center items-center bg-zinc-950/50 backdrop-blur-sm">
-      <div className="absolute bg-zinc-200 max-w-md w-full p-3 rounded-2xl">
+    <div className="fixed inset-0 flex min-h-screen flex-col justify-center items-center bg-zinc-950/50 backdrop-blur-sm p-4">
+      <div className="relative bg-zinc-100 max-w-md w-full p-5 rounded-2xl">
         <div className="flex justify-between mb-4">
-          <h2 className="text-[20px] md:text-2xl font-poppins font-semibold">
+          <h2 className="text-xl md:text-2xl font-poppins font-semibold">
             Editing
           </h2>
           <button
             onClick={() => setOpen(false)}
+            aria-label="Close Editor"
             className="cursor-pointer transition-transform duration-300 ease-out md:hover:rotate-90"
           >
-            <X />
+            <X size={20} />
           </button>
         </div>
         <form onSubmit={handleSave} className="flex flex-col gap-4">
