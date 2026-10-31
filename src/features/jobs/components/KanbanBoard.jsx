@@ -31,18 +31,24 @@ export function KanbanBoard({ title, offers, setOffers, setOffer, setOpen }) {
           <Plus size={20} />
         </button>
       </div>
-      <div className="flex flex-col gap-2">
-        {filteredOffers.map((item) => (
-          <OfferCard
-            key={item.id}
-            item={item}
-            offers={offers}
-            setOffers={setOffers}
-            setOffer={setOffer}
-            setOpen={setOpen}
-          />
-        ))}
-      </div>
+      {!offersCount ? (
+        <div className="py-11 text-center border-2 border-dashed border-zinc-400 rounded-xl">
+          <p className="text-sm text-zinc-500">No items tracked yet!</p>
+        </div>
+      ) : (
+        <div className="flex flex-col gap-2">
+          {filteredOffers.map((item) => (
+            <OfferCard
+              key={item.id}
+              item={item}
+              offers={offers}
+              setOffers={setOffers}
+              setOffer={setOffer}
+              setOpen={setOpen}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
